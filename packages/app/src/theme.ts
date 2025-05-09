@@ -3,7 +3,7 @@ import { createTheme } from '@mantine/core';
 export const theme = createTheme({
   colors: {
 	dark: [
-		'#00008B', // Dark Blue
+		'#ffffff', // Dark Blue
 		'#0000CD', // Medium Blue
 		'#0000FF', // Blue
 		'#191970', // Midnight Blue
