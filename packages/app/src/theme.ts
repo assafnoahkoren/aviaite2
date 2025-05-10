@@ -5,9 +5,9 @@ export const theme = createTheme({
 	dark: [
 		'#ffffff', // Dark Blue
 		'#0000CD', // Medium Blue
-		'#0000FF', // Blue
-		'#191970', // Midnight Blue
-		'#000080', // Navy
+		'#ffffff50', // Blue
+		'#ffffff20', // Midnight Blue
+		'#ffffff20', // Navy
 		'#000036', // Darker Blue
 		'#000024', // Even Darker Blue
 		'#000012', // Almost Black Blue
