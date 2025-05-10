@@ -10,7 +10,7 @@ import { ClickToComponent } from "click-to-react-component";
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <MantineProvider theme={theme} defaultColorScheme="dark">
+    <MantineProvider theme={theme} >
       <App />
       <ClickToComponent editor="cursor" />
     </MantineProvider>

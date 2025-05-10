@@ -1,14 +1,12 @@
 import React from 'react';
 import { IconMenu2, IconPencilPlus } from '@tabler/icons-react';
-import { Drawer, Button, ActionIcon } from '@mantine/core';
+import { Drawer, ActionIcon, Title, Group } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import Menu from './Menu';
+import { Outlet } from 'react-router-dom';
+import { ColorModeToggle } from '../ColorModeToggle/ColorModeToggle';
 
-interface AppShellProps {
-  children: React.ReactNode;
-}
-
-const AppShell: React.FC<AppShellProps> = ({ children }) => {
+const AppShell = () => {
   const [opened, { open, close }] = useDisclosure(false);
 
   const handleNewChat = () => {
@@ -20,6 +18,12 @@ const AppShell: React.FC<AppShellProps> = ({ children }) => {
     <>
       <Drawer
         opened={opened}
+        title={
+          <Group justify="space-between">
+            <Title order={4} c="var(--mantine-color-dark-0)">Menu</Title>
+            <ColorModeToggle />
+          </Group>
+        }
         onClose={close}
         styles={{
           close: {
@@ -33,14 +37,14 @@ const AppShell: React.FC<AppShellProps> = ({ children }) => {
       <div className="font-[Heebo,sans-serif]">
         <header className="flex items-center justify-between py-[10px] px-[20px] bg-[var(--mantine-color-dark-6)] text-white">
           <div className="cursor-pointer flex items-center justify-center" onClick={open}>
-            <IconMenu2 size={24} />
+            <IconMenu2 size={24} color="var(--mantine-color-dark-0)" />
           </div>
-          <span className="flex-grow text-center tracking-wider opacity-80">aviaiate</span>
+          <Title c="var(--mantine-color-dark-0)" size="sm" className="flex-grow text-center tracking-wider opacity-80">aviaiate</Title>
           <ActionIcon variant="transparent" onClick={handleNewChat} aria-label="New Chat">
-            <IconPencilPlus size={24} color="white" />
+            <IconPencilPlus size={24} color="var(--mantine-color-dark-0)" />
           </ActionIcon>
         </header>
-        <main className="font-[Heebo,sans-serif]">{children}</main>
+        <main className="font-[Heebo,sans-serif]"><Outlet /></main>
       </div>
     </>
   );
