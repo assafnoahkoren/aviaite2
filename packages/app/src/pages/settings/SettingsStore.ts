@@ -1,8 +1,14 @@
 import { makeAutoObservable } from 'mobx';
+import { makePersistable } from 'mobx-persist-store';
 
 class SettingsStore {
   constructor() {
     makeAutoObservable(this);
+    makePersistable(this, {
+      name: 'settings',
+      properties: [],
+      storage: localStorage,
+    });
   }
 }
 
