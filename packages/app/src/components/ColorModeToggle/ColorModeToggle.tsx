@@ -7,8 +7,9 @@ export function ColorModeToggle() {
 
   return (
     <ActionIcon
-      variant="outline"
-      color={dark ? 'yellow' : 'blue'}
+      variant="transparent"
+      className='flex items-center justify-center'
+      color="var(--mantine-color-dark-0)"
       onClick={() => toggleColorScheme()}
       title="Toggle color scheme"
     >

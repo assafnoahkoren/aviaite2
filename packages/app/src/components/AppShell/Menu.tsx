@@ -34,7 +34,7 @@ const Menu: React.FC = () => {
         ))}
       </div>
 
-      <Divider my="xl" />
+      <Divider my="md" color="dimmed" opacity={0.3}/>
 
 	  <div className="flex-grow overflow-auto">
         <ChatHistory />

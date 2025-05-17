@@ -19,15 +19,14 @@ const AppShell = () => {
       <Drawer
         opened={opened}
         title={
-          <Group justify="space-between">
-            <Title order={4} c="var(--mantine-color-dark-0)">Menu</Title>
+          <Group justify="space-between items-center">
+            <Title order={4}>Menu</Title>
             <ColorModeToggle />
           </Group>
         }
         onClose={close}
         styles={{
           close: {
-            color: 'var(--mantine-color-dark-0)',
           },
         }}
       >
@@ -37,12 +36,10 @@ const AppShell = () => {
       <div className="font-[Heebo,sans-serif]">
         <header className="flex items-center justify-between py-[10px] px-[20px] bg-[var(--mantine-color-dark-6)] text-white">
           <div className="cursor-pointer flex items-center justify-center" onClick={open}>
-            <IconMenu2 size={24} color="var(--mantine-color-dark-0)" />
+            <IconMenu2 size={24} />
           </div>
-          <Title c="var(--mantine-color-dark-0)" size="sm" className="flex-grow text-center tracking-wider opacity-80">aviaiate</Title>
-          <ActionIcon variant="transparent" onClick={handleNewChat} aria-label="New Chat">
-            <IconPencilPlus size={24} color="var(--mantine-color-dark-0)" />
-          </ActionIcon>
+          <Title size="sm" className="flex-grow text-center tracking-wider opacity-80">aviaiate</Title>
+          <IconPencilPlus size={24} className="cursor-pointer" onClick={handleNewChat}/>
         </header>
         <main className="font-[Heebo,sans-serif]"><Outlet /></main>
       </div>

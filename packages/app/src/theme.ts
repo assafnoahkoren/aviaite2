@@ -3,33 +3,33 @@ import { createTheme, type MantineThemeOverride } from '@mantine/core';
 const darkTheme: MantineThemeOverride = {
   colors: {
 	dark: [
-		'#ffffff', // Dark Blue
-		'#0000CD', // Medium Blue
-		'#ffffff50', // Blue
-		'#ffffff20', // Midnight Blue
-		'#ffffff20', // Navy
-		'#000036', // Darker Blue
-		'#000024', // Even Darker Blue
-		'#000012', // Almost Black Blue
-		'#00000A', // Very Dark Blue
-		'#000005'  // Near Black Blue
-	]
+		"#f0f4ff",
+		"#3d48b7",
+		"#f0f4ff50",
+		"#1e2d87",
+		"#3d48b7",
+		"#1a1d7a",
+		"#172c73",
+		"#0e1a2c",
+		"#0e1c50",
+		"#0a1844" 
+	  ]
   }
 }; 
 
 const lightTheme: MantineThemeOverride = {
 	colors: {
 		dark: [
-			'#000024', // Dark Blue
-			'#0000CD', // Medium Blue
-			'#ffffff50', // Blue
-			'#ffffff20', // Midnight Blue
-			'#ffffff20', // Navy
-			'#000036', // Darker Blue
-			'#e7e7ff', // Even Darker Blue
-			'#000012', // Almost Black Blue
-			'#00000A', // Very Dark Blue
-			'#000005'  // Near Black Blue
+			"#0a1844",
+			"#d5dafb",
+			"#a9b1f1",
+			"#7a87e9",
+			"#5362e1",
+			"#3a4bdd",
+			"#2c40dc",
+			"#1f32c4",
+			"#182cb0",
+			"#0a259c"
 	
 		]
 	}
