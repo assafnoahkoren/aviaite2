@@ -4,7 +4,6 @@ import LoginPage from '../pages/login/login';
 import ProfilePage from '../pages/profile/profile';
 import RegisterPage from '../pages/register/register';
 import SettingsPage from '../pages/settings/settings';
-import AppShell from '../components/AppShell/AppShell';
 
 export function AppRouter() {
   return (
@@ -12,11 +11,9 @@ export function AppRouter() {
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route element={<AppShell />}>
-          <Route path="/" element={<ChatPage />} />
-          <Route path="/settings" element={<SettingsPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
-        </Route>
+        <Route path="/" element={<ChatPage />} />
+        <Route path="/settings" element={<SettingsPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Routes>
     </BrowserRouter>
   );
