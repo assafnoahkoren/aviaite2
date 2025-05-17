@@ -24,12 +24,12 @@ const Sidebar: React.FC = () => {
     >
       {/* Top icons */}
       <Stack gap={16} align="center">
-        <ActionIcon size="lg" variant="subtle" color={theme.colors.shades[9]} onClick={closeFullScreenDrawer}>
+        <ActionIcon size="lg" variant="light" color={theme.colors.shades[9]} onClick={closeFullScreenDrawer}>
           <IconMessages size={24} />
         </ActionIcon>
-        <ActionIcon size="lg" variant="subtle" color={theme.colors.shades[9]} onClick={closeFullScreenDrawer}>
+        {/* <ActionIcon size="lg" variant="subtle" color={theme.colors.shades[9]} onClick={closeFullScreenDrawer}>
           <IconHistory size={24} />
-        </ActionIcon>
+        </ActionIcon> */}
       </Stack>
       {/* Bottom icons */}
       <Stack gap={16} align="center">

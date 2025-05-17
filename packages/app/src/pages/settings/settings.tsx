@@ -10,7 +10,8 @@ const SettingsPage: React.FC = observer(() => {
       <Title order={3} mb={24}>Settings</Title>
 
       {/* Language Picker */}
-      <Text mb={8}>Language</Text>
+      <Text>Language</Text>
+      <Text mb={8} size="xs" opacity={0.4}>The response language of the AI chatbot</Text>
       <Group mb={24}>
         <Button
           leftSection={<ReactCountryFlag countryCode="GB" svg style={{ width: 22 }} title="English" />}
@@ -29,7 +30,8 @@ const SettingsPage: React.FC = observer(() => {
       </Group>
 
       {/* Answer Length */}
-      <Text mb={8}>Answer Length</Text>
+      <Text>Answer Length</Text>
+      <Text mb={8} size="xs" opacity={0.4}>The length of the answer from the AI chatbot</Text>
       <Group mb={24}>
         <Button
           variant={settingsStore.answerLength === 'short' ? 'filled' : 'outline'}
@@ -46,7 +48,8 @@ const SettingsPage: React.FC = observer(() => {
       </Group>
 
       {/* Model Temperature */}
-      <Text mb={8}>Model Temperature ({settingsStore.temperature})</Text>
+      <Text>Model Temperature ({settingsStore.temperature})</Text>
+      <Text mb={8} size="xs" opacity={0.4}>0 is more deterministic, 1 is more creative</Text>
       <Slider
         min={0}
         max={1}
