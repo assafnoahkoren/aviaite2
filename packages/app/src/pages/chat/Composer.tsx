@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Box, TextInput, ActionIcon, Group } from '@mantine/core';
 import { IconSend } from '@tabler/icons-react';
 import { useMantineTheme } from '@mantine/core';
+import { chatStore } from './ChatStore';
 
 const Composer: React.FC = () => {
   const [value, setValue] = useState('');
@@ -9,7 +10,7 @@ const Composer: React.FC = () => {
 
   const handleSend = () => {
     if (value.trim()) {
-      // TODO: send message logic
+      chatStore.addMessage({ type: 'user', value: value.trim() });
       setValue('');
     }
   };
