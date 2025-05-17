@@ -21,6 +21,10 @@ class ChatStore {
     this.messages.push({ type: 'bot', value: 'Hello, how can I help you today?', createdOn: new Date() });
     this.isLoading = false;
   }
+
+  newChat() {
+    this.messages = [];
+  }
 }
 
 export const chatStore = new ChatStore();

@@ -4,6 +4,7 @@ import { IconMessages, IconHistory, IconMessagePlus, IconSettings, IconUser } fr
 import { openFullScreenDrawer, closeFullScreenDrawer } from '../../utils/openFullScreenDrawer';
 import SettingsPage from '../settings/settings';
 import ProfilePage from '../profile/profile';
+import { chatStore } from './ChatStore';
 
 const Sidebar: React.FC = () => {
   const theme = useMantineTheme();
@@ -33,7 +34,7 @@ const Sidebar: React.FC = () => {
       </Stack>
       {/* Bottom icons */}
       <Stack gap={16} align="center">
-        <ActionIcon size="lg" variant="subtle" color={theme.colors.shades[9]} onClick={closeFullScreenDrawer}>
+        <ActionIcon size="lg" variant="subtle" color={theme.colors.shades[9]} onClick={() => { chatStore.newChat(); closeFullScreenDrawer(); }}>
           <IconMessagePlus size={24} />
         </ActionIcon>
         <Divider my={4} w={30} mx="auto" style={{ background: theme.colors.shades[0], opacity: 0.5 }} />
