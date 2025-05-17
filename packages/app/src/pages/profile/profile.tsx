@@ -1,10 +1,11 @@
+import { Box } from '@mantine/core';
 import React from 'react';
 
 const ProfilePage: React.FC = () => {
   return (
-    <div>
+    <Box p={24}>
       <h1>Profile works</h1>
-    </div>
+    </Box>
   );
 };
 

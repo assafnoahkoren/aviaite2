@@ -1,10 +1,11 @@
+import { Box } from '@mantine/core';
 import React from 'react';
 
 const SettingsPage: React.FC = () => {
   return (
-    <div>
+    <Box p={24}>
       <h1>Settings works</h1>
-    </div>
+    </Box>
   );
 };
 
