@@ -23,11 +23,11 @@ const ChatPage: React.FC = () => {
           }}
         >
           {/* Top section */}
-          <Box style={{ flex: 1 }}>
+          <Box style={{ flex: 1, minHeight: 0 }}>
             <MessagesList />
           </Box>
           {/* Bottom section */}
-          <Box>
+          <Box style={{ flexShrink: 0 }}>
             <Composer />
           </Box>
         </Box>

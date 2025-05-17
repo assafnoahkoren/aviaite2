@@ -8,13 +8,18 @@ export interface Message {
 
 class ChatStore {
   messages: Message[] = [];
+  isLoading: boolean = false;
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  addMessage(message: Omit<Message, 'createdOn'>) {
+  async addMessage(message: Omit<Message, 'createdOn'>) {
+    this.isLoading = true;
     this.messages.push({ ...message, createdOn: new Date() });
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    this.messages.push({ type: 'bot', value: 'Hello, how can I help you today?', createdOn: new Date() });
+    this.isLoading = false;
   }
 }
 
