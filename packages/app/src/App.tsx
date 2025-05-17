@@ -1,12 +1,13 @@
 import './App.css'
 import { AppRouter } from './routing/Router';
-import { MantineProvider } from '@mantine/core';
+import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import { theme } from './theme';
 
 function App() {
   return (
     <>
-    <MantineProvider theme={theme} defaultColorScheme="dark">
+    <ColorSchemeScript defaultColorScheme="auto" />
+    <MantineProvider theme={theme} defaultColorScheme="auto" forceColorScheme='dark'>
       <AppRouter />
     </MantineProvider>
     </>
