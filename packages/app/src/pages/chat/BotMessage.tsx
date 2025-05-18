@@ -54,10 +54,9 @@ const BotMessage: React.FC<BotMessageProps> = ({ value, createdOn, loading }) =>
 						ml={8}
 						pe={8}
 						ps={8}
-						style={{ marginLeft: 8 }}
 						aria-label="Book"
 					>
-						<IconBook size={20} />
+						<IconBook size={20} style={{ position: 'relative', bottom: 1 }} />
 						&nbsp;&nbsp;
 						<Text size="xs" style={{ whiteSpace: 'nowrap' }}>
 							Page 1
