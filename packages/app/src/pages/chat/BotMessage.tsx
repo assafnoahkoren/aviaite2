@@ -1,6 +1,9 @@
 import React from 'react';
 import { Box, Button, Group, Loader, Text, useMantineTheme } from '@mantine/core';
 import { IconBook } from '@tabler/icons-react';
+import Markdown from 'react-markdown'
+import { observer } from 'mobx-react-lite';
+import { settingsStore } from '../settings/SettingsStore';
 
 interface BotMessageProps {
 	value: string;
@@ -8,7 +11,7 @@ interface BotMessageProps {
 	loading?: boolean;
 }
 
-const BotMessage: React.FC<BotMessageProps> = ({ value, createdOn, loading }) => {
+const BotMessage: React.FC<BotMessageProps> = observer(({ value, createdOn, loading }) => {
 	const theme = useMantineTheme();
 	return (
 		<Box style={{ display: 'flex', alignItems: 'flex-end', alignSelf: 'flex-start', marginBottom: 8 }}>
@@ -38,7 +41,9 @@ const BotMessage: React.FC<BotMessageProps> = ({ value, createdOn, loading }) =>
 						<Loader color={theme.primaryColor} size={20} />
 					</Box>
 				) : (
-					<Text size="md">{value}</Text>
+					<Box style={{ direction: settingsStore.language === 'he' ? 'rtl' : 'ltr' }}>
+						<Markdown>{value}</Markdown>
+					</Box>
 				)}
 				<Text size="xs" c={theme.colors.shades[1]} opacity={0.7} style={{ marginTop: 4, textAlign: 'right' }}>
 					{createdOn instanceof Date
@@ -66,6 +71,6 @@ const BotMessage: React.FC<BotMessageProps> = ({ value, createdOn, loading }) =>
 			)}
 		</Box>
 	);
-};
+});
 
 export default BotMessage; 

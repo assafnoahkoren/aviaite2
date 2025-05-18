@@ -4,24 +4,18 @@ import { observer } from 'mobx-react-lite';
 import { chatStore } from './ChatStore';
 import UserMessage from './UserMessage';
 import BotMessage from './BotMessage';
+import { profileStore } from '../profile/ProfileStore';
 
-const exampleQuestions = [
-  'What is the weather today?',
-  'Show me my flight status',
-  'How do I reset my password?',
-  'Tell me a joke',
-];
 
-const NoMessages: React.FC = () => {
+const NoMessages: React.FC = observer(() => {
   return (
     <>
       <Stack style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 16, gap: 8, opacity: 0.5 }}>
         <Image src="/aviaite-logo.png" alt="Aviaite Logo" width={80} height={80} fit="contain" />
-        <Text size="lg" style={{ fontWeight: 400, letterSpacing: 1.2 }}>aviaite</Text>
       </Stack>
       <Box style={{ marginTop: 'auto' }}>
         <Group justify="center" gap={8}>
-          {exampleQuestions.map((q, i) => (
+          {profileStore.exampleQuestions.map((q, i) => (
             <Button
               key={i}
               size="sm"
@@ -38,7 +32,7 @@ const NoMessages: React.FC = () => {
       </Box>
     </>
   );
-};
+});
 
 const MessagesList: React.FC = observer(() => {
   const noMessages = chatStore.messages.length === 0;
