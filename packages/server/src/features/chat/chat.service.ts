@@ -21,6 +21,7 @@ export type Settings = {
 export class ChatService {
   chat(dto: ChatDto): { answer: string } {
     // For now, return a mocked answer
-    return { answer: 'This is a mocked answer.' };
+    const randomNumber = Math.floor(Math.random() * 100);
+    return { answer: `This is a mocked answer. Random number: ${randomNumber}` };
   }
 } 
