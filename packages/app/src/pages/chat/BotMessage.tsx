@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Text, useMantineTheme, ActionIcon, Group, Button, Loader } from '@mantine/core';
+import { Box, Button, Group, Loader, Text, useMantineTheme } from '@mantine/core';
 import { IconBook } from '@tabler/icons-react';
 
 interface BotMessageProps {

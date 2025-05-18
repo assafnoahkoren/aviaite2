@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Stack, Divider, ActionIcon, useMantineTheme } from '@mantine/core';
-import { IconMessages, IconHistory, IconMessagePlus, IconSettings, IconUser } from '@tabler/icons-react';
+import { IconMessages, IconMessagePlus, IconSettings, IconUser } from '@tabler/icons-react';
 import { openFullScreenDrawer, closeFullScreenDrawer } from '../../utils/openFullScreenDrawer';
 import SettingsPage from '../settings/settings';
 import ProfilePage from '../profile/profile';
