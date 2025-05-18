@@ -23,7 +23,7 @@ export class ChatDto {
   userMessage: string;
 }
 
-@Controller('chat')
+@Controller('api/chat')
 export class ChatController {
   constructor(private readonly chatService: ChatService) {}
 
