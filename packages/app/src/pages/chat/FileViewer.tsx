@@ -63,9 +63,9 @@ const FileViewer: React.FC = observer(() => {
             </Button>
           ))}
         </Group>
-        <Document file="https://retrocdn.net/images/e/e4/Pdf-sample.pdf">
+        {/* <Document file="https://retrocdn.net/images/e/e4/Pdf-sample.pdf">
           <Page pageNumber={1} />
-        </Document>
+        </Document> */}
       </Stack>
     </Box>
   );
