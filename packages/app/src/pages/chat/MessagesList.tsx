@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import { Box, Text, ScrollArea, Group, Button, Image, Stack } from '@mantine/core';
+import { Box, ScrollArea, Group, Button, Image, Stack } from '@mantine/core';
 import { observer } from 'mobx-react-lite';
 import { chatStore } from './ChatStore';
 import UserMessage from './UserMessage';
