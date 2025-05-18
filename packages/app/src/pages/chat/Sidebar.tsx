@@ -38,10 +38,10 @@ const Sidebar: React.FC = () => {
           <IconMessagePlus size={24} />
         </ActionIcon>
         <Divider my={4} w={30} mx="auto" style={{ background: theme.colors.shades[0], opacity: 0.5 }} />
-        <ActionIcon size="lg" variant="subtle" color={theme.colors.shades[9]} onClick={() => openFullScreenDrawer(<SettingsPage />)}>
+        <ActionIcon size="lg" variant="subtle" color={theme.colors.shades[9]} onClick={() => openFullScreenDrawer(<SettingsPage />, 'settings')}>
           <IconSettings size={24} />
         </ActionIcon>
-        <ActionIcon size="lg" variant="subtle" color={theme.colors.shades[9]} onClick={() => openFullScreenDrawer(<ProfilePage />)}>
+        <ActionIcon size="lg" variant="subtle" color={theme.colors.shades[9]} onClick={() => openFullScreenDrawer(<ProfilePage />, 'profile')}>
           <IconUser size={24} />
         </ActionIcon>
       </Stack>

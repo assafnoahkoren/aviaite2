@@ -3,24 +3,30 @@ import type { ReactNode } from 'react';
 import { Drawer, Box, Text, useMantineTheme } from '@mantine/core';
 import { IconX } from '@tabler/icons-react';
 
-let drawerInstance: ((content: ReactNode) => void) | null = null;
+let drawerInstance: ((content: ReactNode, key?: string) => void) | null = null;
 let closeDrawerInstance: (() => void) | null = null;
 let isDrawerOpen = false;
+let currentDrawerKey: string | undefined = undefined;
 
 export function DrawerManager() {
   const [opened, setOpened] = React.useState(false);
   const [content, setContent] = React.useState<ReactNode>(null);
+  const [drawerKey, setDrawerKey] = React.useState<string | undefined>(undefined);
   const theme = useMantineTheme();
 
   React.useEffect(() => {
-    drawerInstance = (node: ReactNode) => {
+    drawerInstance = (node: ReactNode, key?: string) => {
       setContent(node);
+      setDrawerKey(key);
       setOpened(true);
       isDrawerOpen = true;
+      currentDrawerKey = key;
     };
     closeDrawerInstance = () => {
       setOpened(false);
       isDrawerOpen = false;
+      currentDrawerKey = undefined;
+      setDrawerKey(undefined);
     };
     return () => {
       drawerInstance = null;
@@ -99,13 +105,17 @@ export function DrawerManager() {
   );
 }
 
-export async function openFullScreenDrawer(component: ReactNode) {
+export async function openFullScreenDrawer(component: ReactNode, key?: string) {
+  if (isDrawerOpen && currentDrawerKey === key) {
+    if (closeDrawerInstance) closeDrawerInstance();
+    return;
+  }
   if (isDrawerOpen && closeDrawerInstance) {
     closeDrawerInstance();
     // Wait for the close animation to finish (300ms)
     await new Promise(res => setTimeout(res, 320));
   }
-  if (drawerInstance) drawerInstance(component);
+  if (drawerInstance) drawerInstance(component, key);
 }
 
 export function closeFullScreenDrawer() {
