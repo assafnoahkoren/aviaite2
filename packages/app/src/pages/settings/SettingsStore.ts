@@ -3,7 +3,7 @@ import { makePersistable } from 'mobx-persist-store';
 
 class SettingsStore {
   language: 'he' | 'en' = 'en';
-  answerLength: 'short' | 'long' = 'short';
+  answerLength: 'short' | 'long' = 'long';
   temperature: number = 0.5;
 
   constructor() {
