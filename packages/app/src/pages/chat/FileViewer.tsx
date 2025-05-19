@@ -3,7 +3,7 @@ import { Box, Stack, Button, Group } from '@mantine/core';
 import { profileStore } from '../profile/ProfileStore';
 import { observer } from 'mobx-react-lite';
 import { IconFileTypePdf } from '@tabler/icons-react';
-import { Document, Page } from 'react-pdf';
+// import { Document, Page } from 'react-pdf';
 
 const pdfsByProfileType: Record<string, { name: string; url: string }[]> = {
   elal7787: [

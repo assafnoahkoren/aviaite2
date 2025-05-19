@@ -11,7 +11,7 @@ let currentDrawerKey: string | undefined = undefined;
 export function DrawerManager() {
   const [opened, setOpened] = React.useState(false);
   const [content, setContent] = React.useState<ReactNode>(null);
-  const [drawerKey, setDrawerKey] = React.useState<string | undefined>(undefined);
+  const [_drawerKey, setDrawerKey] = React.useState<string | undefined>(undefined);
   const theme = useMantineTheme();
 
   React.useEffect(() => {
