@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Button, Group, Loader, Stack, Text, useMantineTheme, Modal } from '@mantine/core';
+import { Box, Button, Loader, Stack, Text, useMantineTheme, Modal } from '@mantine/core';
 import { IconBook } from '@tabler/icons-react';
 import Markdown from 'react-markdown'
 import { observer } from 'mobx-react-lite';
