@@ -57,11 +57,11 @@ const MessagesList: React.FC = observer(() => {
               msg.type === 'user' ? (
                 <UserMessage key={idx} value={msg.value} createdOn={msg.createdOn} />
               ) : (
-                <BotMessage key={idx} value={msg.value} createdOn={msg.createdOn} />
+                <BotMessage key={idx} value={msg.value} createdOn={msg.createdOn} sources={msg.sources} />
               )
             )}
             {chatStore.isLoading && (
-              <BotMessage value="" createdOn={new Date()} loading={true} />
+              <BotMessage value="" createdOn={new Date()} loading={true} sources={[]} />
             )}
           </Box>
         </ScrollArea>

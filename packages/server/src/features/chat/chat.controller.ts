@@ -3,6 +3,18 @@ import { ChatService, Message as ServiceMessage, Profile as ServiceProfile, Sett
 import { IsArray, ValidateNested, IsObject, IsString, IsIn, IsNumber } from 'class-validator';
 import { Type } from 'class-transformer';
 
+// Allowed value arrays
+export const MESSAGE_TYPES = ['user', 'bot'] as const;
+export const PROFILE_TYPES = ['elal7787', 'shirgal'] as const;
+export const LANGUAGES = ['he', 'en'] as const;
+export const ANSWER_LENGTHS = ['short', 'long'] as const;
+
+// Type definitions from arrays
+export type MessageType = (typeof MESSAGE_TYPES)[number];
+export type ProfileType = (typeof PROFILE_TYPES)[number];
+export type Language = (typeof LANGUAGES)[number];
+export type AnswerLength = (typeof ANSWER_LENGTHS)[number];
+
 export class ChatDto {
   @IsArray()
   @ValidateNested({ each: true })
@@ -23,6 +35,14 @@ export class ChatDto {
   userMessage: string;
 }
 
+export class DocuChatQueryDto {
+  @IsIn(PROFILE_TYPES)
+  profileType: ProfileType;
+
+  @IsString()
+  question: string;
+}
+
 @Controller('api/chat')
 export class ChatController {
   constructor(private readonly chatService: ChatService) {}
@@ -31,19 +51,12 @@ export class ChatController {
   chat(@Body() body: ChatDto) {
     return this.chatService.chat(body);
   }
+
+  @Post('query')
+  queryDocuChat(@Body() body: DocuChatQueryDto) {
+    return this.chatService.queryDocuhat(body);
+  }
 }
-
-// Allowed value arrays
-export const MESSAGE_TYPES = ['user', 'bot'] as const;
-export const PROFILE_TYPES = ['elal7787', 'shirgal'] as const;
-export const LANGUAGES = ['he', 'en'] as const;
-export const ANSWER_LENGTHS = ['short', 'long'] as const;
-
-// Type definitions from arrays
-export type MessageType = (typeof MESSAGE_TYPES)[number];
-export type ProfileType = (typeof PROFILE_TYPES)[number];
-export type Language = (typeof LANGUAGES)[number];
-export type AnswerLength = (typeof ANSWER_LENGTHS)[number];
 
 export class MessageDto {
   @IsIn(MESSAGE_TYPES)

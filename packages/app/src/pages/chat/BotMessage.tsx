@@ -1,20 +1,30 @@
-import React from 'react';
-import { Box, Button, Group, Loader, Text, useMantineTheme } from '@mantine/core';
+import React, { useState } from 'react';
+import { Box, Button, Group, Loader, Stack, Text, useMantineTheme, Modal } from '@mantine/core';
 import { IconBook } from '@tabler/icons-react';
 import Markdown from 'react-markdown'
 import { observer } from 'mobx-react-lite';
 import { settingsStore } from '../settings/SettingsStore';
+import type { DocuChatSourceChunk } from '../../api/chatApi';
 
 interface BotMessageProps {
 	value: string;
 	createdOn: Date;
 	loading?: boolean;
+	sources?: DocuChatSourceChunk[];
 }
 
-const BotMessage: React.FC<BotMessageProps> = observer(({ value, createdOn, loading }) => {
+const BotMessage: React.FC<BotMessageProps> = observer(({ value, createdOn, loading, sources }) => {
 	const theme = useMantineTheme();
+	const [modalOpen, setModalOpen] = useState(false);
+	const [selectedSource, setSelectedSource] = useState<DocuChatSourceChunk | null>(null);
+
+	const handleOpenSource = (source: DocuChatSourceChunk) => {
+		setSelectedSource(source);
+		setModalOpen(true);
+	};
+
 	return (
-		<Box style={{ display: 'flex', alignItems: 'flex-end', alignSelf: 'flex-start', marginBottom: 8 }}>
+		<Box style={{ display: 'flex', alignItems: 'flex-end', alignSelf: 'flex-start', marginBottom: 8, flexDirection: 'column' }}>
 			<Box
 				style={{
 					background: theme.colors.shades[8],
@@ -51,24 +61,39 @@ const BotMessage: React.FC<BotMessageProps> = observer(({ value, createdOn, load
 						: ''}
 				</Text>
 			</Box>
-			{!loading && (
-				<Group gap={4} style={{ width: 'max-content' }} wrap="nowrap">
-					<Button
-						variant="subtle"
-						color={theme.colors.shades[8]}
-						ml={8}
-						pe={8}
-						ps={8}
-						aria-label="Book"
-					>
-						<IconBook size={20} style={{ position: 'relative', bottom: 1 }} />
-						&nbsp;&nbsp;
-						<Text size="xs" style={{ whiteSpace: 'nowrap' }}>
-							Page 1
-						</Text>
-					</Button>
-				</Group>
+			{!loading && sources && sources.length > 0 && (
+				<Stack gap={4} style={{ width: 'max-content', marginTop: 4 }}>
+					{sources.map((source, idx) => (
+						<Button
+							key={idx}
+							variant="subtle"
+							color={theme.colors.shades[8]}
+							ml={8}
+							pe={8}
+							ps={8}
+							aria-label={source.fileName}
+							onClick={() => handleOpenSource(source)}
+						>
+							<IconBook size={20} style={{ position: 'relative', bottom: 1 }} />
+							&nbsp;&nbsp;
+							<Text size="xs" style={{ whiteSpace: 'nowrap' }}>
+								{source.fileName}
+								{source.metaData?.page ? ` • Page ${source.metaData.page}` : ''}
+							</Text>
+						</Button>
+					))}
+				</Stack>
 			)}
+			<Modal
+				opened={modalOpen}
+				onClose={() => setModalOpen(false)}
+				title={selectedSource ? `${selectedSource.fileName}${selectedSource.metaData?.page ? ` • Page ${selectedSource.metaData.page}` : ''}` : ''}
+				size="lg"
+			>
+				<Box style={{ whiteSpace: 'pre-wrap', fontFamily: 'inherit', fontSize: 15 }}>
+					{selectedSource?.content?.replace(/(\r\n|\n|\r)/g, '').replace(/\./g, '.\n')}
+				</Box>
+			</Modal>
 		</Box>
 	);
 });
