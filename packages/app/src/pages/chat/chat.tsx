@@ -3,7 +3,7 @@ import { Box, Flex, useMantineTheme } from '@mantine/core';
 import Sidebar from './Sidebar';
 import MessagesList from './MessagesList';
 import Composer from './Composer';
-import FileViewer from './FileViewer';
+// import FileViewer from './FileViewer';
 
 const ChatPage: React.FC = () => {
   const theme = useMantineTheme();
