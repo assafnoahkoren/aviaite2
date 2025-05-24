@@ -1,7 +1,8 @@
 import { Controller, Body, Post } from '@nestjs/common';
 import { ChatService, Message as ServiceMessage, Profile as ServiceProfile, Settings as ServiceSettings } from './chat.service';
-import { IsArray, ValidateNested, IsObject, IsString, IsIn, IsNumber } from 'class-validator';
+import { IsArray, ValidateNested, IsObject, IsString, IsIn, IsNumber, IsOptional } from 'class-validator';
 import { Type } from 'class-transformer';
+import { LlmService } from './llm.service';
 
 // Allowed value arrays
 export const MESSAGE_TYPES = ['user', 'bot'] as const;
@@ -35,17 +36,23 @@ export class ChatDto {
   userMessage: string;
 }
 
-export class DocuChatQueryDto {
+export class ChatQueryDto {
   @IsIn(PROFILE_TYPES)
   profileType: ProfileType;
 
   @IsString()
   question: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => MessageDto)
+  @IsOptional()
+  messages?: ServiceMessage[];
 }
 
 @Controller('api/chat')
 export class ChatController {
-  constructor(private readonly chatService: ChatService) {}
+  constructor(private readonly chatService: ChatService, private readonly llmService: LlmService) {}
 
   @Post()
   chat(@Body() body: ChatDto) {
@@ -53,8 +60,14 @@ export class ChatController {
   }
 
   @Post('query')
-  queryDocuChat(@Body() body: DocuChatQueryDto) {
-    return this.chatService.queryDocuhat(body);
+  async queryDocuChat(@Body() body: ChatQueryDto): Promise<{ answer: string; sources: any }> {
+    const classification = await this.llmService.classifyUserRequest(body.question);
+    if (classification === 'rag') {
+      return this.chatService.queryDocuChat(body);
+    } else {
+      const answer = await this.llmService.generalChat(body.question, body.messages || []);
+      return { answer, sources: { results: [] } };
+    }
   }
 }
 

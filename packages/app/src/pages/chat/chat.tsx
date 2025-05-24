@@ -32,9 +32,9 @@ const ChatPage: React.FC = () => {
           </Box>
         </Box>
         {/* Second half */}
-        <Box style={{ flex: 1 }}>
+        {/* <Box style={{ flex: 1 }}>
           <FileViewer />
-        </Box>
+        </Box> */}
       </Box>
     </Flex>
   );

@@ -65,13 +65,20 @@ export const chatApi = {
     return response.json();
   },
 
-  async query(profileType: Profile['profileType'], question: string): Promise<ChatResponse> {
+  async query(profileType: Profile['profileType'], question: string, messages?: Message[]): Promise<ChatResponse> {
+    const body: { profileType: Profile['profileType']; question: string; messages?: Message[] } = {
+      profileType,
+      question,
+    };
+    if (messages) {
+      body.messages = messages;
+    }
     const response = await fetchClient('/api/chat/query', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ profileType, question }),
+      body: JSON.stringify(body),
     });
     if (!response.ok) {
       throw new Error('Failed to fetch DocuChat response');

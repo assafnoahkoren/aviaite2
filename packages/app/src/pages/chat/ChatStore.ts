@@ -1,7 +1,7 @@
 import { makeAutoObservable } from 'mobx';
 import { chatApi } from '../../api/chatApi';
 import { profileStore } from '../profile/ProfileStore';
-import type { DocuChatSourceChunk } from '../../api/chatApi';
+import type { DocuChatSourceChunk, Message as ApiMessage } from '../../api/chatApi';
 
 export interface Message {
   type: 'user' | 'bot';
@@ -22,8 +22,23 @@ class ChatStore {
     this.isLoading = true;
     const userMsg = { ...message, createdOn: new Date() };
     this.messages.push(userMsg);
+
+    const historyMessages = this.messages
+      .slice(-6, -1)
+      .map(
+        (m): ApiMessage => ({
+          type: m.type,
+          value: m.value,
+          createdOn: m.createdOn,
+        }),
+      );
+
     try {
-      const response = await chatApi.query(profileStore.profileType, message.value);
+      const response = await chatApi.query(
+        profileStore.profileType,
+        message.value,
+        historyMessages,
+      );
       let sources: DocuChatSourceChunk[] | undefined = undefined;
       if (response.sources) {
         sources = response.sources.results.flatMap(r => r.chunks);

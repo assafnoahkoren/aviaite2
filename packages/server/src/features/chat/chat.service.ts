@@ -84,7 +84,7 @@ export class ChatService {
 		return { answer: data.answer?.message || 'No answer from AskYourPDF.' };
 	}
 
-	async queryDocuhat({
+	async queryDocuChat({
 		profileType,
 		question,
 	}: {

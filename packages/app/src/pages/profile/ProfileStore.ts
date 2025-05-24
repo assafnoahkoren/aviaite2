@@ -20,7 +20,6 @@ class ProfileStore {
   get exampleQuestions() {
     if (this.profileType === 'elal7787') {
       return [
-        "What are the hours for the westbound tracks?",
         "What are the navigation performance requirements for the NAT?",
         "Is datalink a requirement for flying the NAT?",
         "What is the Gander transition area?",

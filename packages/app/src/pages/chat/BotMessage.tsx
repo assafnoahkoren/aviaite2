@@ -5,6 +5,7 @@ import Markdown from 'react-markdown'
 import { observer } from 'mobx-react-lite';
 import { settingsStore } from '../settings/SettingsStore';
 import type { DocuChatSourceChunk } from '../../api/chatApi';
+import remarkGfm from 'remark-gfm';
 
 interface BotMessageProps {
 	value: string;
@@ -52,7 +53,7 @@ const BotMessage: React.FC<BotMessageProps> = observer(({ value, createdOn, load
 					</Box>
 				) : (
 					<Box style={{ direction: settingsStore.language === 'he' ? 'rtl' : 'ltr' }}>
-						<Markdown>{value}</Markdown>
+						<Markdown remarkPlugins={[remarkGfm]}>{value}</Markdown>
 					</Box>
 				)}
 				<Text size="xs" c={theme.colors.shades[1]} opacity={0.7} style={{ marginTop: 4, textAlign: 'right' }}>
